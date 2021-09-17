@@ -16,6 +16,9 @@ export function handleSetAuthedUser(authedId) {
         if(users[authedId]) {
           dispatch(setAuthedUser(authedId))
         }
+        else{
+          dispatch(setAuthedUser('invalid'))
+        }
       })
   }
 }
