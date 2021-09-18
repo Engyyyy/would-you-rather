@@ -1,21 +1,34 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends React.Component {
   state = {
-    optionOne: '',
-    optionTwo: '',
+    optionOneText: '',
+    optionTwoText: '',
   }
   handleChange(e) {
     if(e.target.id === 'option-one-text') {
-      this.setState({ optionOne: e.target.value })
+      this.setState({ optionOneText: e.target.value })
     }
     if(e.target.id === 'option-two-text') {
-      this.setState({ optionTwo: e.target.value })
+      this.setState({ optionTwoText: e.target.value })
     }
   }
   handleSubmit(e) {
     e.preventDefault()
+    const { dispatch, authedUser } = this.props
+    const { optionOneText, optionTwoText } = this.state
+    dispatch(handleAddQuestion({
+      optionOneText,
+      optionTwoText,
+      author: authedUser,
+    }))
 
+    this.setState({
+      optionOneText: '',
+      optionTwoText: '',
+    })
   }
   render() {
     return(
@@ -24,18 +37,18 @@ class NewQuestion extends React.Component {
         <input
           id='option-one-text'
           placeholder='option one...'
-          value={ this.state.optionOne }
+          value={ this.state.optionOneText }
           onChange={ e => this.handleChange(e) }
           />
         <input
           id='option-two-text'
           placeholder='option two...'
-          value={ this.state.optionTwo }
+          value={ this.state.optionTwoText }
           onChange={ e => this.handleChange(e) }
           />
         <button
           type='submit'
-          disabled={ this.state.optionOne === '' || this.state.optionTwo === ''}>
+          disabled={ this.state.optionOneText === '' || this.state.optionTwoText === ''}>
             Submit
         </button>
       </form>
@@ -43,4 +56,10 @@ class NewQuestion extends React.Component {
   }
 }
 
-export default NewQuestion
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)
