@@ -1,10 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { handleAnswerQuestion } from '../actions/questions'
 
 class QuestionDetails extends React.Component {
 
   handleAnswer(e) {
-
+    let answer = ''
+    if(e.target.id === 'option-one-btn') {
+      answer = 'optionOne'
+    }
+    if(e.target.id === 'option-two-btn') {
+      answer = 'optionTwo'
+    }
+    const { dispatch, id, authedUser } = this.props
+    dispatch(handleAnswerQuestion(authedUser, id, answer))
   }
   componentDidMount() {
     if(this.props.isAnswered === 'optionOne') {
@@ -50,7 +59,8 @@ function mapStateToprops({ users, questions, authedUser }, { id }) {
   return {
     author: users[questions[id].author],
     question: questions[id],
-    isAnswered: users[authedUser].answers[id]
+    isAnswered: users[authedUser].answers[id],
+    authedUser,
   }
 }
 
