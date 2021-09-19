@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
+import ErrorPage from './ErrorPage'
+import Authentication from './Authentication'
 
 class QuestionDetails extends React.Component {
-
   handleAnswer(e) {
     let answer = ''
     if(e.target.id === 'option-one-btn') {
@@ -12,20 +13,20 @@ class QuestionDetails extends React.Component {
     if(e.target.id === 'option-two-btn') {
       answer = 'optionTwo'
     }
+    e.target.style.backgroundColor = 'red'
     const { dispatch, id, authedUser } = this.props
     dispatch(handleAnswerQuestion(authedUser, id, answer))
   }
-  componentDidMount() {
-    if(this.props.isAnswered === 'optionOne') {
-      document.getElementById('option-one-btn').style.backgroundColor = 'red'
-    }
-    if(this.props.isAnswered === 'optionTwo') {
-      document.getElementById('option-two-btn').style.backgroundColor = 'red'
-    }
-  }
   render() {
-    const { avatarURL } = this.props.author
-    const { question, isAnswered } = this.props
+    const { question, authedUser, users, id } = this.props
+    if(authedUser === '') {
+      return <Authentication location={ this.props.location }/>
+    }
+    if(!question) {
+      return <ErrorPage />
+    }
+    const isAnswered = users[authedUser].answers[id]
+    const { avatarURL } = users[authedUser]
     return(
       <div>
         <img
@@ -37,14 +38,16 @@ class QuestionDetails extends React.Component {
           <button
             id='option-one-btn'
             disabled={ isAnswered }
-            onClick={e => this.handleAnswer(e)}>
+            onClick={e => this.handleAnswer(e)}
+            style={{backgroundColor: isAnswered === 'optionOne' ? 'red' : null}}>
               A.{question.optionOne.text}?
           </button>
           {isAnswered && <p>{question.optionOne.votes.length} people chose this option</p>}
           <button
             id='option-two-btn'
             disabled={ isAnswered }
-            onClick={e => this.handleAnswer(e)}>
+            onClick={e => this.handleAnswer(e)}
+            style={{backgroundColor: isAnswered === 'optionTwo' ? 'red' : null}}>
               B.{question.optionTwo.text}?
           </button>
           {isAnswered && <p>{question.optionTwo.votes.length} people chose this option</p>}
@@ -55,12 +58,13 @@ class QuestionDetails extends React.Component {
   }
 }
 
-function mapStateToprops({ users, questions, authedUser }, { id }) {
+function mapStateToprops({ users, questions, authedUser }, props) {
+  const { id } = props.match.params
   return {
-    author: users[questions[id].author],
     question: questions[id],
-    isAnswered: users[authedUser].answers[id],
+    users,
     authedUser,
+    id,
   }
 }
 

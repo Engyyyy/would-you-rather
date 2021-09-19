@@ -1,6 +1,8 @@
 import React from 'react'
 import { handleSetAuthedUser } from '../actions/authedUser'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import LoadingBar from 'react-redux-loading'
 
 class Login extends React.Component {
   state = {
@@ -14,12 +16,16 @@ class Login extends React.Component {
     const { input } = this.state
     const { dispatch } = this.props
     dispatch(handleSetAuthedUser(input))
-    this.setState({ input: '' })
+    this.setState({
+      input: '',
+     })
   }
   render() {
     const { authedUser } = this.props
+    const from = this.props.location.state ? this.props.location.state.from : '/'
     return (
       <div>
+        <LoadingBar />
         <h3>LOGIN</h3>
         <input
           placeholder='Enter your id...'
@@ -28,10 +34,14 @@ class Login extends React.Component {
           />
         <button
           onClick={ e => this.handleClick(e) }
+          disabled={ this.state.input === ''}
           >
             LOGIN
         </button>
         {authedUser === 'invalid' && <div>Invalid user id!</div>}
+        { authedUser !== '' && authedUser !== 'invalid' &&
+          <Redirect to={from} />
+        }
       </div>
     )
   }

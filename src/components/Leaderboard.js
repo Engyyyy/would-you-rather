@@ -1,11 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import User from './User'
+import NavBar from './NavBar'
+import Authentication from './Authentication'
+
 class Leaderboard extends React.Component {
   render() {
-    const { users } = this.props
+    const { users, authedUser } = this.props
+    if(authedUser === '') {
+      return <Authentication location={ this.props.location }/>
+    }
     return(
       <div>
+      <NavBar />
         <h1>Leaderboard</h1>
         <ol>
           {users.map(user => (
@@ -17,7 +24,7 @@ class Leaderboard extends React.Component {
   }
 }
 
-function mapStateToprops({ users }) {
+function mapStateToprops({ users, authedUser }) {
   return {
     users: Object.keys(users)
       .sort((a, b) => {
@@ -25,6 +32,7 @@ function mapStateToprops({ users }) {
         const score_b = Object.keys(users[b].answers).length + users[b].questions.length
         return score_b - score_a
       }),
+      authedUser,
   }
 }
 
