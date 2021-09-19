@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# would-you-rather project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web application that represents the 'would you rather' game where users ask questions starting with 'would you rather' and give two options. Other users can answer these questions by choosing only one option from the two given options. Choosing 'both' or 'neither' of them is against the game rules.
 
-## Available Scripts
+## TL;DR
 
-In the project directory, you can run:
+To get started developing right away:
 
-### `yarn start`
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* authentication: The app contains a login page where users can write their id into the input field. if the id is of an existing user, logging in is successful and the user is redirected to the home page.
+* Home Page: In the app Home page, asked questions are classified into two categories: answered and unanswered questions. users can navigate between these categories using the tab buttons.
+* Answer Questions: If a user requested to see the details of an unanswered question, they are redirected to the question details page where the user can answer this question by clicking on one of the two options.
+* View Poll Details: If a user requested to see the details of an answered question, they are redirected to the question details page where the user's answer, number and the percentage of users who has chosen each option. Users can't change their answers in a poll.
+* Adding Questions: Users can submit a form that adds a new question to the app so that other users can answer it. This form consists of two input fields; one for each option.
+* Leaderboard: existing app users are arranged descendingly based on the their activity.
+The more users answer and ask questions, the higher rank they are at the leaderboard!
+* Logout: Users can log out of their account and they are redirected to the login page again upon logging out.
 
-### `yarn test`
+## What You're Getting
+```bash
+├── README.md - This file.
+├── package.json
+├── public
+│   ├── favicon.ico
+│   └── index.html
+└── src
+    ├── actions
+    │    ├── authedUser.js
+    │    ├── questions.js
+    │    ├── shared.js
+    │    └── users.js
+    ├── components
+    │    ├── AnsweredList.js
+    │    ├── App.js
+    │    ├── Authentication.js
+    │    ├── ErrorPage.js
+    │    ├── Home.js
+    │    ├── Leaderboard.js
+    │    ├── Login.js
+    │    ├── NavBar.js
+    │    ├── NewQuestion.js
+    │    ├── Question.js
+    │    ├── QuestionDetails.js
+    │    ├── UnansweredList.js
+    │    └── Users.js
+    ├── _DATA.js
+    ├── index.css
+    ├── index.js
+    ├── middleware
+    │    ├── index.js
+    │    └── logger.js
+    ├── reducers.js
+    │    ├── authedUser.js
+    │    ├── index.js
+    │    ├── questions.js
+    │    └── users.js
+    └── Would-You-Rather.jpg
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
