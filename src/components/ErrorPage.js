@@ -1,6 +1,9 @@
+import NavBar from './NavBar'
+
 function ErrorPage() {
   return (
     <div>
+      <NavBar />
       <h1>
         Error 404
       </h1>
