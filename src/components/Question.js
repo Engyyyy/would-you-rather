@@ -10,19 +10,26 @@ class Question extends React.Component {
   render() {
     const { optionOne, optionTwo, avatarURL, id } = this.props
     return(
-      <li>
-        <img
-          src={ avatarURL }
-          alt='avatar of question author'
-          />
-        <p>Would You Rather ...?</p>
-        <div>
-          <p>A. {optionOne.text}</p>
-          <p>B. {optionTwo.text}</p>
+      <li className='margin'>
+        <div className='flex'>
+          <div className='item'>
+            <img
+              src={ avatarURL }
+              alt='avatar of question author'
+              />
+          </div>
+          <div className='item text'>
+            <p><strong>Would You Rather ...?</strong></p>
+            <div className='options'>
+              <span className='red'>A. {optionOne.text}</span>
+              <br />
+              <span className='blue'>B. {optionTwo.text}</span>
+            </div>
+            <button onClick={ e => this.handleClick(e, id) } className='poll-btn green'>
+              View Poll
+            </button>
+          </div>
         </div>
-        <button onClick={ e => this.handleClick(e, id) }>
-          View Poll
-        </button>
       </li>
     )
   }

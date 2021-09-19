@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleSetAuthedUser } from '../actions/authedUser'
 class NavBar extends React.Component {
@@ -10,12 +10,26 @@ class NavBar extends React.Component {
   render () {
     const { authedUser, users } = this.props
     return (
-      <div>
-        <Link to='/'>Home</Link>
-        <Link to='/new'>New Question</Link>
-        <Link to='/leaderboard'>Leaderboard</Link>
-        {users[authedUser] && <span>Hello, {users[authedUser].name}</span>}
-        <Link to='/login' onClick={ e => this.handleClick(e) }>Logout</Link>
+      <div className='flex' id='nav-bar'>
+        <div className='nav-bar-element green'>
+          <NavLink to='/' exact={true} activeClassName='active-link'>Home</NavLink>
+        </div>
+        <div className='nav-bar-element green'>
+          <NavLink to='/add' activeClassName='active-link'>New Question</NavLink>
+        </div>
+        <div className='nav-bar-element green'>
+          <NavLink to='/leaderboard' activeClassName='active-link'>Leaderboard</NavLink>
+        </div>
+        {users[authedUser] &&
+          <span className='welcome nav-bar-element'>Hello, {users[authedUser].name}</span>}
+        <div className='nav-bar-element green'>
+          <NavLink
+            to='/login'
+            onClick={ e => this.handleClick(e) }
+            activeClassName='active-link'>
+              Logout
+          </NavLink>
+        </div>
 
       </div>
     )

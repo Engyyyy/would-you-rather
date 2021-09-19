@@ -43,21 +43,25 @@ class NewQuestion extends React.Component {
       <div>
         {this.state.toHome && <Redirect to='/' />}
         <NavBar />
-        <form onSubmit={ e => this.handleSubmit(e) }>
-          <h1>Would You Rather...?</h1>
+        <form onSubmit={ e => this.handleSubmit(e) } className='parent'>
+          <h1 className='header'>Would You Rather...?</h1>
           <input
             id='option-one-text'
+            className='red input'
             placeholder='option one...'
             value={ this.state.optionOneText }
             onChange={ e => this.handleChange(e) }
             />
           <input
             id='option-two-text'
+            className='blue input'
             placeholder='option two...'
             value={ this.state.optionTwoText }
             onChange={ e => this.handleChange(e) }
             />
+          <br />
           <button
+          className='btn green'
             type='submit'
             disabled={ this.state.optionOneText === '' || this.state.optionTwoText === ''}>
               Submit

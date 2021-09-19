@@ -13,7 +13,7 @@ class Leaderboard extends React.Component {
     return(
       <div>
       <NavBar />
-        <h1>Leaderboard</h1>
+        <h1 className='header'>Leaderboard</h1>
         <ol>
           {users.map(user => (
             <User key={ user } id={ user } />

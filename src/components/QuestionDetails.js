@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
 import ErrorPage from './ErrorPage'
 import Authentication from './Authentication'
+import NavBar from './NavBar'
 
 class QuestionDetails extends React.Component {
   handleAnswer(e) {
@@ -29,30 +30,63 @@ class QuestionDetails extends React.Component {
     const { avatarURL } = users[authedUser]
     return(
       <div>
-        <img
-          src={ avatarURL }
-          alt='avtar of question author'
-          />
-        <h3>Would You Rather ... </h3>
-        <div>
-          <button
-            id='option-one-btn'
-            disabled={ isAnswered }
-            onClick={e => this.handleAnswer(e)}
-            style={{backgroundColor: isAnswered === 'optionOne' ? 'red' : null}}>
-              A.{question.optionOne.text}?
-          </button>
-          {isAnswered && <p>{question.optionOne.votes.length} people chose this option</p>}
-          <button
-            id='option-two-btn'
-            disabled={ isAnswered }
-            onClick={e => this.handleAnswer(e)}
-            style={{backgroundColor: isAnswered === 'optionTwo' ? 'red' : null}}>
-              B.{question.optionTwo.text}?
-          </button>
-          {isAnswered && <p>{question.optionTwo.votes.length} people chose this option</p>}
+        <NavBar />
+        <div className='flex-vertical border'>
+          <div className='item-vertical'>
+            <div className='parent flex'>
+              <div className='item'>
+                <img
+                  src={ avatarURL }
+                  alt='avtar of question author'
+                  />
+              </div>
+              <div className='item'>
+                <h4 className='subheader'>{users[question.author].name} asks:</h4>
+                <h3 className='header'>Would You Rather ... </h3>
+              </div>
+            </div>
+            <div className='poll-btns flex'>
+              <button
+                id='option-one-btn'
+                className='welcome'
+                disabled={ isAnswered }
+                onClick={e => this.handleAnswer(e)}
+                style={{
+                  backgroundColor:
+                  isAnswered === 'optionOne'
+                  ? 'pink'
+                  : isAnswered === 'optionTwo' ? 'grey' : null,
+                  border: isAnswered === 'optionOne' ? '5px solid red' : null}}>
+                    A.{question.optionOne.text}?
+                </button>
+                {isAnswered &&
+                  <div>
+                    <p>{question.optionOne.votes.length} people chose this option</p>
+                    <p>{(question.optionOne.votes.length/(question.optionOne.votes.length+question.optionTwo.votes.length))*100}% chose this option</p>
+                  </div>
+                }
+              <button
+                id='option-two-btn'
+                className='welcome'
+                disabled={ isAnswered }
+                onClick={e => this.handleAnswer(e)}
+                style={{
+                  backgroundColor:
+                  isAnswered === 'optionTwo'
+                  ? 'pink'
+                  : isAnswered === 'optionOne' ? 'grey' : null,
+                  border: isAnswered === 'optionTwo' ? '3px solid red ' : null}}>
+                    B.{question.optionTwo.text}?
+              </button>
+              {isAnswered &&
+                <div>
+                  <p>{question.optionTwo.votes.length} people chose this option</p>
+                  <p>{(question.optionTwo.votes.length/(question.optionOne.votes.length+question.optionTwo.votes.length))*100}% chose this option</p>
+                </div>
+              }
+            </div>
+          </div>
         </div>
-
       </div>
     )
   }

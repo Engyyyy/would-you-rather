@@ -11,3 +11,235 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  padding: 20px;
+}
+
+.background {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url('./Would-You-Rather.jpg');
+  opacity: 0.3;
+}
+.parent {
+  position: relative;
+  text-align: center;
+  width: 50vw;
+  margin: 0 auto;
+  padding: 60px;
+}
+
+.header {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 0
+}
+
+.input {
+  width: 30vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 29px;
+  margin: 10px
+}
+
+.btn {
+  position: absolute;
+  width: auto;
+  bottom: 0;
+  right: 0;
+  padding: 15px 32px;
+  border: none;
+  background-color: #179e7e;
+  color: white;
+  font-size: 16px;
+  margin: 40px;
+  cursor: pointer;
+}
+
+.green:active {
+  background-color: #006049;
+}
+
+.green:hover {
+  border: 1px solid black
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.invalid {
+  color: #fe0909;
+  font-size: 20px;
+}
+
+#nav-bar {
+  background-color: #179e7e;
+  font-size: 30px;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: black
+}
+
+.nav-bar-element {
+  height: 100%;
+  padding: 10px;
+}
+
+.active-link {
+  height: 100%;
+  background-color: #006049;
+}
+
+.welcome {
+  color: white;
+}
+
+.center {
+  text-align: center;
+  margin: 20px;
+}
+
+.tab {
+  width: auto;
+  padding: 15px 32px;
+  border: none;
+  background-color: #179e7e;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.item {
+  margin: 20px;
+}
+
+.options {
+  font-size: 23px;
+  margin-bottom: 20px;
+}
+
+.blue {
+  color: #160293;
+}
+
+.red {
+  color: #b80202;
+}
+
+#option-one-btn {
+  background-color: rgb(184, 2, 2);
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#option-one-btn:hover {
+  border: 5px solid black;
+}
+
+#option-one-btn:active {
+  background-color: rgb(131, 7, 7)
+}
+
+#option-one-btn:disabled {
+  border: none;
+  cursor: default;
+}
+
+#option-two-btn {
+  background-color: rgb(22, 2, 147);
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#option-two-btn:active {
+  background-color: rgb(11, 0, 74)
+}
+
+#option-two-btn:hover {
+  border: 5px solid black;
+}
+
+#option-two-btn:disabled {
+  border: none;
+  cursor: default;
+}
+
+strong {
+  font-size: 25px
+}
+
+.poll-btn {
+  background-color: #179e7e;
+  width: 100%;
+  padding: 15px 25px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.text {
+  width: 40%;
+}
+
+img {
+  position: relative;
+  top: 25%
+}
+
+.border {
+  border: 5px solid #179e7e;
+  margin: 40px
+}
+
+.subheader {
+  font-size: 35px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.flex-vertical {
+  display: flex;
+  flex-direction: vertical;
+  justify-content: center;
+}
+
+.poll-btns {
+  justify-content: center;
+  margin-bottom: 35px
+}
+
+.item-vertical {
+  margin-bottom: 10px
+}
+
+.margin {
+  margin-right: 30px;
+}
+
+li {
+  border: 2px solid gray
+}

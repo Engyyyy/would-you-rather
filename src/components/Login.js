@@ -26,22 +26,31 @@ class Login extends React.Component {
     return (
       <div>
         <LoadingBar />
-        <h3>LOGIN</h3>
-        <input
-          placeholder='Enter your id...'
-          value={ this.state.input }
-          onChange={ e => this.handleChange(e) }
-          />
-        <button
-          onClick={ e => this.handleClick(e) }
-          disabled={ this.state.input === ''}
-          >
-            LOGIN
-        </button>
-        {authedUser === 'invalid' && <div>Invalid user id!</div>}
-        { authedUser !== '' && authedUser !== 'invalid' &&
-          <Redirect to={from} />
-        }
+        <div className='container'>
+          <div className='background' ></div>
+          <div className='parent'>
+            <h3 className='header'>LOGIN</h3>
+            <input
+              type='text'
+              className='input'
+              placeholder='Enter your id...'
+              value={ this.state.input }
+              onChange={ e => this.handleChange(e) }
+              />
+            {authedUser === 'invalid' && <p className='invalid'>Invalid user id!</p>}
+            <button
+              className='green btn'
+              onClick={ e => this.handleClick(e) }
+              disabled={ this.state.input === ''}
+              >
+                LOGIN
+            </button>
+            {
+              authedUser !== '' && authedUser !== 'invalid' &&
+              <Redirect to={from} />
+            }
+          </div>
+        </div>
       </div>
     )
   }

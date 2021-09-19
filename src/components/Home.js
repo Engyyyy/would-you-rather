@@ -25,13 +25,21 @@ class Home extends React.Component {
           :
           <div>
             <NavBar />
-            <h1>Would You Rather...?</h1>
-            <button id='unanswered-btn' onClick={ e => this.handleClick(e)}>
-              Unanswered Questions
-            </button>
-            <button id='answered-btn' onClick={ e => this.handleClick(e) }>
-              Answered Questions
-            </button>
+            <h1 className='header'>Would You Rather...?</h1>
+            <div className='center'>
+              <button
+                id='unanswered-btn'
+                onClick={ e => this.handleClick(e)}
+                className='green tab'>
+                  Unanswered Questions
+              </button>
+              <button
+                id='answered-btn'
+                onClick={ e => this.handleClick(e) }
+                className='green tab'>
+                  Answered Questions
+              </button>
+            </div>
             {
               this.state.screen === 'unanswered'
               ? <UnansweredList />
